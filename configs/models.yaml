@@ -1,0 +1,16 @@
+models:
+  qwen25_3b:
+    model_id: Qwen/Qwen2.5-3B-Instruct
+    backend: hf_local
+    quantization: 4bit_nf4
+    dtype: bf16
+    max_new_tokens: 256
+    temperature: 0.0
+  phogpt_4b:
+    model_id: vinai/PhoGPT-4B-Chat
+    backend: hf_local
+    trust_remote_code: true
+    quantization: 4bit_nf4
+    dtype: bf16
+    max_new_tokens: 256
+    temperature: 0.0

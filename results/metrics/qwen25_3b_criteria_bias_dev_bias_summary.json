@@ -1,0 +1,32 @@
+{
+  "run_id": "qwen25_3b_criteria_bias_dev",
+  "num_pairs": 60,
+  "conditional_accuracy": 1.0,
+  "verbosity_bias_rate": 0.0,
+  "style_bias_rate": null,
+  "swap_consistency_bias_subset": 1.0,
+  "delta_length_distribution": {
+    "chosen_shorter": 47,
+    "no_choice": 13
+  },
+  "delta_tokens_chosen_minus_rejected": {
+    "min": -31,
+    "max": -11
+  },
+  "controlled_counts": {
+    "verbosity_pairs": 54,
+    "style_pairs": 6
+  },
+  "perturbation_counts": {
+    "concise_correct_vs_verbose_wrong": 7,
+    "instruction_following_vs_over_elaboration": 20,
+    "appropriate_refusal_vs_verbose_moralizing": 20,
+    "same_content_different_length": 7,
+    "plain_style_vs_polished_style": 6
+  },
+  "note": "Bias should be interpreted jointly across accuracy, swap consistency, verbosity, style, and delta length distribution.",
+  "figure_paths": [
+    "C:\\Users\\Lenovo\\Desktop\\KYf\\LLM\\Vi-PPE-mini\\results\\figures\\qwen25_3b_criteria_bias_dev_bias_rates.png",
+    "C:\\Users\\Lenovo\\Desktop\\KYf\\LLM\\Vi-PPE-mini\\results\\figures\\qwen25_3b_criteria_bias_dev_delta_tokens_scatter.png"
+  ]
+}

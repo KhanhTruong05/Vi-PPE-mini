@@ -1,0 +1,32 @@
+{
+  "num_pairs": 6,
+  "num_judgments": 12,
+  "missing_ab_count": 0,
+  "missing_ba_count": 0,
+  "parse_success_rate": 1,
+  "pairwise_accuracy": 1,
+  "domain_accuracy": {
+    "fact_check": 1,
+    "instruction": 1,
+    "safety": 1
+  },
+  "macro_accuracy": 1,
+  "lower_bound_domain_score": 1,
+  "swap_consistency": 1,
+  "inconsistent_count": 0,
+  "invalid_count": 0,
+  "final_winner_counts": {
+    "A": 3,
+    "B": 3
+  },
+  "position_bias": {
+    "raw_ab_winner_counts": {
+      "A": 3,
+      "B": 3
+    },
+    "raw_ba_winner_counts": {
+      "B": 3,
+      "A": 3
+    }
+  }
+}

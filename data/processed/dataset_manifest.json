@@ -1,0 +1,21 @@
+{
+  "schema_version": "v1",
+  "created_at": "2026-07-01T23:29:47+00:00",
+  "files": [
+    {
+      "path": "C:/Users/Lenovo/Desktop/KYf/LLM/Vi-PPE-mini/data/processed/pairs_dev.jsonl",
+      "sha256": "7efcadf1c7365ed1fd6c6817cb4e516c6af2df609542c5a68864832798ed7c9e",
+      "num_records": 11
+    },
+    {
+      "path": "C:/Users/Lenovo/Desktop/KYf/LLM/Vi-PPE-mini/data/processed/pairs_test.jsonl",
+      "sha256": "041d5a02e3fa4890adccf7eac5abff5a651b4ee34d16d42ad7025a0023d53fd1",
+      "num_records": 39
+    },
+    {
+      "path": "C:/Users/Lenovo/Desktop/KYf/LLM/Vi-PPE-mini/data/processed/bias_subset.jsonl",
+      "sha256": "e7576c41ab6b6733925603d2a12e3fcfdf583e9e7af03b0b81e724f7fc7acd1c",
+      "num_records": 60
+    }
+  ]
+}

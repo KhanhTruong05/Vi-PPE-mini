@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vi-ppe-mini"
+version = "0.1.0"
+description = "Criteria-aware Vietnamese LLM-as-a-Judge mini benchmark."
+requires-python = ">=3.9"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

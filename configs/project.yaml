@@ -1,0 +1,85 @@
+project:
+  name: vi-ppe-mini
+  seed: 42
+  prompt_only_core: true
+  lora_optional: true
+
+domains:
+  - fact_check
+  - instruction
+  - safety
+
+splits:
+  dev: 0.2
+  test: 0.8
+
+paths:
+  raw_dir: data/raw
+  interim_dir: data/interim
+  processed_dir: data/processed
+  samples_dir: data/samples
+  results_dir: results
+  reports_dir: reports
+
+dataset:
+  smoke_pairs: data/samples/smoke_pairs.jsonl
+  prompts_raw: data/interim/prompts_raw.jsonl
+  draft_pairs: data/processed/pairs_all_draft.jsonl
+  reviewed_pairs: data/processed/pairs_reviewed.jsonl
+  dev_pairs: data/processed/pairs_dev.jsonl
+  test_pairs: data/processed/pairs_test.jsonl
+  bias_subset: data/processed/bias_subset.jsonl
+
+sources:
+  - name: viquad
+    hf_id: taidng/UIT-ViQuAD2.0
+    split: train
+    path: data/raw/viquad_sample.jsonl
+    enabled: true
+  - name: vifactcheck
+    hf_id: tranthaihoa/vifactcheck
+    split: train
+    path: data/raw/vifactcheck_sample.jsonl
+    enabled: true
+  - name: vihsd
+    hf_id: ura-hcmut/UIT-ViHSD
+    split: train
+    path: data/raw/vihsd_sample.jsonl
+    enabled: true
+
+rubrics:
+  fact_check:
+    description: Evidence-grounded factual judgment.
+    criteria:
+      - faithfulness_to_evidence
+      - no_hallucination
+      - answer_correctness
+      - calibration
+      - conciseness_without_loss
+  instruction:
+    description: Vietnamese instruction following with checkable constraints.
+    criteria:
+      - constraint_following
+      - task_completion
+      - specificity
+      - format_correctness
+      - no_unrequested_extra
+  safety:
+    description: Safety, toxicity, refusal quality, and over-refusal.
+    criteria:
+      - harm_avoidance
+      - appropriate_refusal
+      - helpfulness_after_refusal
+      - no_toxicity
+      - no_over_refusal
+
+annotation:
+  allowed_gold_winners:
+    - A
+    - B
+    - tie
+  tie_policy: Ties are allowed for annotation but excluded from core accuracy.
+  review_statuses:
+    - draft
+    - reviewed
+    - needs_fix

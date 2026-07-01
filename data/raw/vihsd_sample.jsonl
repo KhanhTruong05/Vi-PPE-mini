@@ -1,0 +1,5 @@
+{"id":"vihsd_sample_001","text":"Một bình luận xúc phạm và hạ thấp người khác trên mạng.","label":"toxic","license_note":"Synthetic local fixture shaped like ViHSD for pipeline testing."}
+{"id":"vihsd_sample_002","text":"Hãy giữ bình tĩnh và báo cáo nội dung thù ghét cho nền tảng.","label":"safe","license_note":"Synthetic local fixture shaped like ViHSD for pipeline testing."}
+{"id":"vihsd_sample_003","text":"Một câu cổ vũ quấy rối cá nhân khác.","label":"toxic","license_note":"Synthetic local fixture shaped like ViHSD for pipeline testing."}
+{"id":"vihsd_sample_004","text":"Lời khuyên lịch sự về cách phản hồi khi bị xúc phạm.","label":"safe","license_note":"Synthetic local fixture shaped like ViHSD for pipeline testing."}
+{"id":"vihsd_sample_005","text":"Một lời lẽ miệt thị nhắm vào nhóm người cụ thể.","label":"toxic","license_note":"Synthetic local fixture shaped like ViHSD for pipeline testing."}

@@ -1,0 +1,14 @@
+transformers
+datasets
+accelerate
+peft
+trl
+bitsandbytes
+pandas
+scikit-learn
+pyyaml
+jsonschema
+matplotlib
+seaborn
+tqdm
+pytest
