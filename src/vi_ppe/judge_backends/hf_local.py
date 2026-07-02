@@ -37,16 +37,16 @@ class HfLocalBackend:
     def generate(self, prompt: str, pair: dict, order: str) -> str:
         self._load()
         messages = [{"role": "user", "content": prompt}]
-        input_ids = self._tokenizer.apply_chat_template(
+        rendered_prompt = self._tokenizer.apply_chat_template(
             messages,
-            tokenize=True,
+            tokenize=False,
             add_generation_prompt=True,
-            return_tensors="pt",
-        ).to(self._model.device)
+        )
+        encoded = self._tokenizer(rendered_prompt, return_tensors="pt").to(self._model.device)
         output_ids = self._model.generate(
-            input_ids,
+            **encoded,
             max_new_tokens=int(self.model_cfg.get("max_new_tokens", 256)),
             do_sample=False,
-            temperature=float(self.model_cfg.get("temperature", 0.0)),
         )
-        return self._tokenizer.decode(output_ids[0][input_ids.shape[-1] :], skip_special_tokens=True)
+        prompt_length = encoded["input_ids"].shape[-1]
+        return self._tokenizer.decode(output_ids[0][prompt_length:], skip_special_tokens=True)
