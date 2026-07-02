@@ -541,6 +541,8 @@ Report nhanh theo phase:
 - `reports/phase_08_report.md`
 - `reports/phase_09_report.md`
 - `reports/phase_10_report.md`
+- `reports/final_dataset_v2_report.md`
+- `reports/final_colab_commands.md`
 
 ### Phase 0 - Scope Freeze Và Project Scaffold
 

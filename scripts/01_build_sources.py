@@ -29,10 +29,13 @@ def build_sources(config_path: str, limit_per_source: int | None = None, output:
         hf_id = source_cfg.get("hf_id")
         split = source_cfg.get("split")
         adapter = build_adapter(name)
-        if hf_id:
+        local_path = ROOT / path if path else None
+        if local_path and local_path.exists():
+            input_ref = str(local_path)
+        elif hf_id:
             input_ref = hf_id
         elif path:
-            input_ref = str(ROOT / path)
+            input_ref = str(local_path)
         else:
             input_ref = None
         source_records = adapter.iter_normalized(input_ref, limit=limit_per_source, split=split)

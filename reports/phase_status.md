@@ -16,7 +16,7 @@ File này là bảng theo dõi nhanh. Chi tiết từng phase nằm ở các fil
 | 8 | Judge Inference Engine | done | `reports/phase_08_report.md` | Mock local inference, parser, resume scaffold pass |
 | 9 | Swap Aggregation và Core Metrics | done | `reports/phase_09_report.md` | Core metrics and swap aggregation pass |
 | 10 | Bias Metrics | done | `reports/phase_10_report.md` | Bias summary and figures generated from local mock run |
-| 11 | Experiment Matrix | not_started |  | Real inference cần Colab A100 |
+| 11 | Experiment Matrix | not_started | `reports/final_colab_commands.md` | Final dataset v2 prepared; real inference cần Colab A100 |
 | 12 | Error Analysis và Charts | not_started |  |  |
 | 13 | Report, Reproducibility và Packaging | not_started |  |  |
 | 14 | Optional LoRA/QLoRA SFT Branch | not_started |  | Chỉ làm nếu core đã xong và có Colab A100 |

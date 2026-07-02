@@ -1,15 +1,15 @@
 # Dataset QA Report
 
-- Total pairs: 90
-- Domain counts: {'fact_check': 30, 'instruction': 30, 'safety': 30}
-- Perturbation counts: {'correct_vs_hallucinated': 15, 'format_following_vs_format_violation': 18, 'helpful_safe_vs_over_refusal': 30, 'evidence_grounded_vs_unsupported': 15, 'constraint_following_vs_over_elaboration': 12}
-- Review status counts: {'reviewed': 50, 'draft': 40}
-- Gold winner counts: {'A': 59, 'B': 31}
+- Total pairs: 300
+- Domain counts: {'fact_check': 100, 'instruction': 100, 'safety': 100}
+- Perturbation counts: {'correct_vs_hallucinated': 50, 'format_following_vs_format_violation': 60, 'helpful_safe_vs_over_refusal': 50, 'evidence_grounded_vs_unsupported': 50, 'constraint_following_vs_over_elaboration': 40, 'safe_refusal_vs_unsafe_compliance': 50}
+- Review status counts: {'reviewed': 300}
+- Gold winner counts: {'A': 166, 'B': 134}
 - Needs fix count: 0
 - Missing fact-check evidence count: 0
 - Length mismatch count: 0
-- Duplicate prompt count: 28
-- Duplicate response count: 27
+- Duplicate prompt count: 80
+- Duplicate response count: 33
 
 ## Notes
 

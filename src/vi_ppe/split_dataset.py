@@ -100,10 +100,16 @@ def write_manifest(paths: list[str | Path], output_path: str | Path) -> dict[str
         "created_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
         "files": [],
     }
+    root = Path.cwd().resolve()
     for path in paths:
+        resolved = Path(path).resolve()
+        try:
+            manifest_path = resolved.relative_to(root)
+        except ValueError:
+            manifest_path = Path(path)
         manifest["files"].append(
             {
-                "path": str(path).replace("\\", "/"),
+                "path": str(manifest_path).replace("\\", "/"),
                 "sha256": sha256_file(path),
                 "num_records": count_jsonl(path),
             }
@@ -126,6 +132,10 @@ def write_dataset_card(
     domain_counts = Counter(pair["domain"] for pair in all_core)
     split_counts = {"dev": len(dev), "test": len(test), "bias": len(bias)}
     perturbation_counts = Counter(pair["perturbation_type"] for pair in all_core + bias)
+    try:
+        manifest_display_path = Path(manifest_path).resolve().relative_to(Path.cwd().resolve()).as_posix()
+    except ValueError:
+        manifest_display_path = Path(manifest_path).as_posix()
 
     lines = [
         "# Dataset Card: Vi-PPE-mini",
@@ -140,6 +150,7 @@ def write_dataset_card(
         "- `tranthaihoa/vifactcheck` via `vifactcheck` adapter.",
         "- `ura-hcmut/UIT-ViHSD` via `vihsd` adapter.",
         "- `synthetic_instruction_templates` for instruction-following pairs.",
+        "- `manual_safety_templates` for controlled safety/refusal pairs.",
         "",
         "## Counts",
         "",
@@ -157,7 +168,7 @@ def write_dataset_card(
         "",
         "## Manifest",
         "",
-        f"See `{manifest_path}` for SHA256 hashes and record counts.",
+        f"See `{manifest_display_path}` for SHA256 hashes and record counts.",
     ]
     Path(output_path).parent.mkdir(parents=True, exist_ok=True)
     Path(output_path).write_text("\n".join(lines) + "\n", encoding="utf-8")

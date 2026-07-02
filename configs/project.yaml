@@ -10,8 +10,8 @@ domains:
   - safety
 
 splits:
-  dev: 0.2
-  test: 0.8
+  dev: 0.1667
+  test: 0.8333
 
 paths:
   raw_dir: data/raw
@@ -39,7 +39,7 @@ sources:
   - name: vifactcheck
     hf_id: tranthaihoa/vifactcheck
     split: train
-    path: data/raw/vifactcheck_sample.jsonl
+    path: data/raw/Vifactcheck_Dataset
     enabled: true
   - name: vihsd
     hf_id: ura-hcmut/UIT-ViHSD
