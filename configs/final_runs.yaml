@@ -1,0 +1,58 @@
+runs:
+  - run_id: qwen25_baseline_dev
+    model: qwen25_3b
+    dataset: data/processed/pairs_dev.jsonl
+    template: baseline_generic_vi
+    split: dev
+    bias: false
+    required_for_phase_11: true
+
+  - run_id: qwen25_criteria_dev
+    model: qwen25_3b
+    dataset: data/processed/pairs_dev.jsonl
+    template: auto_criteria_by_domain
+    split: dev
+    bias: false
+    required_for_phase_11: true
+
+  - run_id: qwen25_baseline_test
+    model: qwen25_3b
+    dataset: data/processed/pairs_test.jsonl
+    template: baseline_generic_vi
+    split: test
+    bias: false
+    required_for_phase_11: true
+
+  - run_id: qwen25_criteria_test
+    model: qwen25_3b
+    dataset: data/processed/pairs_test.jsonl
+    template: auto_criteria_by_domain
+    split: test
+    bias: false
+    required_for_phase_11: true
+
+  - run_id: qwen25_bias_baseline
+    model: qwen25_3b
+    dataset: data/processed/bias_subset.jsonl
+    template: baseline_generic_vi
+    split: bias
+    bias: true
+    required_for_phase_11: true
+
+  - run_id: qwen25_bias_mitigated
+    model: qwen25_3b
+    dataset: data/processed/bias_subset.jsonl
+    template: criteria_bias_mitigated_vi
+    split: bias
+    bias: true
+    required_for_phase_11: true
+
+optional_runs:
+  - run_id: phogpt_baseline_test_subset
+    model: phogpt_4b
+    dataset: data/processed/pairs_test.jsonl
+    template: baseline_generic_vi
+    split: test
+    bias: false
+    limit: 20
+    required_for_phase_11: false
