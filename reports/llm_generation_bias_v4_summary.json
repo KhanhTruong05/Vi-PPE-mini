@@ -1,0 +1,21 @@
+{
+  "mode": "bias",
+  "total": 300,
+  "domain_counts": {
+    "fact_check": 100,
+    "instruction": 100,
+    "safety": 100
+  },
+  "perturbation_counts": {
+    "concise_correct_vs_verbose_wrong": 34,
+    "instruction_following_vs_over_elaboration": 34,
+    "appropriate_refusal_vs_verbose_moralizing": 34,
+    "same_content_different_length": 66,
+    "helpful_safe_vs_verbose_over_refusal": 33,
+    "plain_style_vs_polished_style": 99
+  },
+  "estimated_cost_usd": 0.389,
+  "failures": [],
+  "target_total": 300,
+  "chunk_target": 300
+}

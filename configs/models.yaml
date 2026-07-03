@@ -4,13 +4,35 @@ models:
     backend: hf_local
     quantization: 4bit_nf4
     dtype: bf16
+    batch_size: 1
     max_new_tokens: 256
     temperature: 0.0
+    hardware_note: Colab A100 fallback / low VRAM GPU
+  qwen25_3b_a100_40gb:
+    model_id: Qwen/Qwen2.5-3B-Instruct
+    backend: hf_local
+    quantization: none
+    dtype: bf16
+    batch_size: 16
+    max_new_tokens: 256
+    temperature: 0.0
+    hardware_note: Colab A100 40GB bf16, batch_size 16
+  qwen25_3b_bf16_b8:
+    model_id: Qwen/Qwen2.5-3B-Instruct
+    backend: hf_local
+    quantization: none
+    dtype: bf16
+    batch_size: 8
+    max_new_tokens: 256
+    temperature: 0.0
+    hardware_note: Colab A100 40GB bf16 safe fallback, batch_size 8
   phogpt_4b:
     model_id: vinai/PhoGPT-4B-Chat
     backend: hf_local
     trust_remote_code: true
     quantization: 4bit_nf4
     dtype: bf16
+    batch_size: 1
     max_new_tokens: 256
     temperature: 0.0
+    hardware_note: Colab A100 or equivalent, 4-bit fallback

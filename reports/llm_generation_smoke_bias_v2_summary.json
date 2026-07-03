@@ -1,0 +1,19 @@
+{
+  "mode": "bias",
+  "total": 9,
+  "domain_counts": {
+    "fact_check": 3,
+    "instruction": 3,
+    "safety": 3
+  },
+  "perturbation_counts": {
+    "concise_correct_vs_verbose_wrong": 1,
+    "instruction_following_vs_over_elaboration": 1,
+    "appropriate_refusal_vs_verbose_moralizing": 1,
+    "same_content_different_length": 2,
+    "helpful_safe_vs_verbose_over_refusal": 1,
+    "plain_style_vs_polished_style": 3
+  },
+  "estimated_cost_usd": 0.0021,
+  "failures": []
+}

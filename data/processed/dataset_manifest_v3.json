@@ -1,0 +1,21 @@
+{
+  "schema_version": "v1",
+  "created_at": "2026-07-02T20:22:06+00:00",
+  "files": [
+    {
+      "path": "data/processed/pairs_dev_v3.jsonl",
+      "sha256": "483345fb1613bfa3560660e5e163b41651105c15de8bea5c2c82f8fbca303577",
+      "num_records": 100
+    },
+    {
+      "path": "data/processed/pairs_test_v3.jsonl",
+      "sha256": "c2c28575855ec6fdcc293931bf66f1a8fb0f668e9f00eedb058f1d61ed750deb",
+      "num_records": 500
+    },
+    {
+      "path": "data/processed/bias_subset_v3.jsonl",
+      "sha256": "35e55034efbe7421577897cf5d5b522db3abb52fea8dd052124d0998dfce2cc5",
+      "num_records": 150
+    }
+  ]
+}

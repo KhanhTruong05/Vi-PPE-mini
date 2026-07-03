@@ -19,6 +19,11 @@ def main() -> int:
     parser.add_argument("--input", default="data/processed/pairs_reviewed.jsonl")
     parser.add_argument("--bias", default="data/processed/bias_subset_reviewed.jsonl")
     parser.add_argument("--config", default="configs/project.yaml")
+    parser.add_argument("--dev-output", default=None)
+    parser.add_argument("--test-output", default=None)
+    parser.add_argument("--bias-output", default=None)
+    parser.add_argument("--manifest-output", default="data/processed/dataset_manifest.json")
+    parser.add_argument("--card-output", default="reports/dataset_card.md")
     args = parser.parse_args()
 
     cfg = load_project_config(ROOT / args.config)
@@ -30,11 +35,11 @@ def main() -> int:
     dev, test = split_reviewed_pairs(pairs, dev_ratio=dev_ratio, seed=seed)
     bias = freeze_bias_subset(bias_pairs)
 
-    dev_path = ROOT / cfg["dataset"]["dev_pairs"]
-    test_path = ROOT / cfg["dataset"]["test_pairs"]
-    bias_path = ROOT / cfg["dataset"]["bias_subset"]
-    manifest_path = ROOT / "data/processed/dataset_manifest.json"
-    card_path = ROOT / "reports/dataset_card.md"
+    dev_path = ROOT / (args.dev_output or cfg["dataset"]["dev_pairs"])
+    test_path = ROOT / (args.test_output or cfg["dataset"]["test_pairs"])
+    bias_path = ROOT / (args.bias_output or cfg["dataset"]["bias_subset"])
+    manifest_path = ROOT / args.manifest_output
+    card_path = ROOT / args.card_output
 
     write_jsonl(dev_path, dev)
     write_jsonl(test_path, test)

@@ -1,0 +1,9 @@
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+.pytest_cache/
+results/judgments/smoke_mock*.jsonl
+results/metrics/smoke_mock*_summary.json
+results/metrics/smoke_mock*_pair_results.jsonl

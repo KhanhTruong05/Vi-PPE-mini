@@ -26,6 +26,9 @@ class HfLocalBackend:
             self.model_cfg["model_id"],
             trust_remote_code=trust_remote_code,
         )
+        if self._tokenizer.pad_token is None:
+            self._tokenizer.pad_token = self._tokenizer.eos_token
+        self._tokenizer.padding_side = "left"
         self._model = AutoModelForCausalLM.from_pretrained(
             self.model_cfg["model_id"],
             device_map="auto",
@@ -35,18 +38,26 @@ class HfLocalBackend:
         )
 
     def generate(self, prompt: str, pair: dict, order: str) -> str:
+        return self.generate_batch([prompt], pairs=[pair], orders=[order])[0]
+
+    def generate_batch(self, prompts: list[str], pairs: list[dict] | None = None, orders: list[str] | None = None) -> list[str]:
         self._load()
-        messages = [{"role": "user", "content": prompt}]
-        rendered_prompt = self._tokenizer.apply_chat_template(
-            messages,
-            tokenize=False,
-            add_generation_prompt=True,
-        )
-        encoded = self._tokenizer(rendered_prompt, return_tensors="pt").to(self._model.device)
+        rendered_prompts = [
+            self._tokenizer.apply_chat_template(
+                [{"role": "user", "content": prompt}],
+                tokenize=False,
+                add_generation_prompt=True,
+            )
+            for prompt in prompts
+        ]
+        encoded = self._tokenizer(rendered_prompts, return_tensors="pt", padding=True).to(self._model.device)
         output_ids = self._model.generate(
             **encoded,
             max_new_tokens=int(self.model_cfg.get("max_new_tokens", 256)),
             do_sample=False,
         )
         prompt_length = encoded["input_ids"].shape[-1]
-        return self._tokenizer.decode(output_ids[0][prompt_length:], skip_special_tokens=True)
+        return [
+            self._tokenizer.decode(output[prompt_length:], skip_special_tokens=True)
+            for output in output_ids
+        ]

@@ -15,8 +15,9 @@ ANNOTATION_COLUMNS = [
     "evidence",
     "response_a",
     "response_b",
-    "current_gold",
-    "gold_reason",
+    "draft_winner",
+    "draft_reason",
+    "reviewer_id",
     "annotator_winner",
     "annotator_reason",
     "needs_fix",
@@ -24,7 +25,14 @@ ANNOTATION_COLUMNS = [
 ]
 
 
-def export_annotation_sheet(input_path: str | Path, output_path: str | Path, sample: int | None = None) -> int:
+def export_annotation_sheet(
+    input_path: str | Path,
+    output_path: str | Path,
+    sample: int | None = None,
+    *,
+    include_draft_labels: bool = False,
+    prefill_annotations: bool = False,
+) -> int:
     pairs = read_jsonl(input_path)
     selected = pairs[:sample] if sample is not None else pairs
     Path(output_path).parent.mkdir(parents=True, exist_ok=True)
@@ -40,12 +48,13 @@ def export_annotation_sheet(input_path: str | Path, output_path: str | Path, sam
                     "evidence": pair.get("evidence", ""),
                     "response_a": pair["response_a"],
                     "response_b": pair["response_b"],
-                    "current_gold": pair["gold_winner"],
-                    "gold_reason": pair["gold_reason"],
-                    "annotator_winner": pair["gold_winner"],
-                    "annotator_reason": pair["gold_reason"],
+                    "draft_winner": pair["gold_winner"] if include_draft_labels else "",
+                    "draft_reason": pair["gold_reason"] if include_draft_labels else "",
+                    "reviewer_id": "",
+                    "annotator_winner": pair["gold_winner"] if prefill_annotations else "",
+                    "annotator_reason": pair["gold_reason"] if prefill_annotations else "",
                     "needs_fix": "",
-                    "notes": "Prefilled from current draft label; please review before final freeze.",
+                    "notes": "Human review required before this row can be marked reviewed.",
                 }
             )
     return len(selected)
@@ -68,23 +77,31 @@ def import_annotations(annotations_path: str | Path, pairs_path: str | Path, out
                 stats["missing_pair_id"] += 1
                 continue
             pair = by_id[pair_id]
-            winner = (row.get("annotator_winner") or row.get("current_gold") or "").strip()
-            reason = (row.get("annotator_reason") or row.get("gold_reason") or "").strip()
+            winner = (row.get("annotator_winner") or "").strip()
+            reason = (row.get("annotator_reason") or "").strip()
             if _truthy(row.get("needs_fix", "")):
                 pair["review_status"] = "needs_fix"
                 stats["needs_fix"] += 1
+                continue
+            if not winner and not reason:
+                stats["missing_annotation"] += 1
                 continue
             if winner not in WINNERS:
                 pair["review_status"] = "needs_fix"
                 pair["metadata"] = {**pair.get("metadata", {}), "annotation_error": f"invalid winner {winner!r}"}
                 stats["invalid_winner"] += 1
                 continue
+            if not reason:
+                pair["review_status"] = "needs_fix"
+                pair["metadata"] = {**pair.get("metadata", {}), "annotation_error": "missing annotator_reason"}
+                stats["missing_reason"] += 1
+                continue
             pair["gold_winner"] = winner
-            if reason:
-                pair["gold_reason"] = reason
+            pair["gold_reason"] = reason
+            reviewer_id = (row.get("reviewer_id") or "human_annotation").strip()
             annotators = pair.get("annotators") or []
-            if "bootstrap_annotation" not in annotators:
-                annotators.append("bootstrap_annotation")
+            if reviewer_id not in annotators:
+                annotators.append(reviewer_id)
             pair["annotators"] = annotators
             pair["review_status"] = "reviewed"
             pair["metadata"] = {
@@ -150,6 +167,6 @@ def write_qa_report(report: dict[str, Any], output_path: str | Path) -> None:
         "",
         "## Notes",
         "",
-        "Bootstrap-reviewed rows are prefilled from draft labels. Human review is still required before final freeze.",
+        "Rows marked reviewed require explicit annotator_winner and annotator_reason from the annotation sheet.",
     ]
     Path(output_path).write_text("\n".join(lines) + "\n", encoding="utf-8")

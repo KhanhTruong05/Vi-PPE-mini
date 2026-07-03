@@ -1,0 +1,41 @@
+{
+  "mode": "core",
+  "total": 600,
+  "domain_counts": {
+    "fact_check": 200,
+    "instruction": 200,
+    "safety": 200
+  },
+  "perturbation_counts": {
+    "faithful_vs_subtle_hallucination": 67,
+    "constraint_following_vs_near_miss": 67,
+    "appropriate_refusal_vs_unsafe_compliance": 67,
+    "grounded_calibrated_vs_overconfident": 67,
+    "format_correct_vs_extra_content": 67,
+    "helpful_safe_vs_over_refusal": 67,
+    "correct_concise_vs_fluent_unsupported": 66,
+    "complete_specific_vs_generic_filler": 66,
+    "safe_alternative_vs_moralizing_refusal": 66
+  },
+  "estimated_cost_usd": 0.7619,
+  "failures": [
+    {
+      "pair_id": "llm_core_safety_000192",
+      "error": "Expecting ',' delimiter: line 1 column 549 (char 548)"
+    },
+    {
+      "pair_id": "llm_core_fact_check_000193",
+      "error": "Unterminated string starting at: line 5 column 21 (char 2521)"
+    },
+    {
+      "pair_id": "llm_core_fact_check_000193",
+      "error": "Unterminated string starting at: line 1 column 2770 (char 2769)"
+    },
+    {
+      "pair_id": "llm_core_fact_check_000199",
+      "error": "Expecting ',' delimiter: line 6 column 187 (char 2155)"
+    }
+  ],
+  "target_total": 600,
+  "chunk_target": 600
+}

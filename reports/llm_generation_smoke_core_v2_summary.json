@@ -1,0 +1,22 @@
+{
+  "mode": "core",
+  "total": 9,
+  "domain_counts": {
+    "fact_check": 3,
+    "instruction": 3,
+    "safety": 3
+  },
+  "perturbation_counts": {
+    "faithful_vs_subtle_hallucination": 1,
+    "constraint_following_vs_near_miss": 1,
+    "appropriate_refusal_vs_unsafe_compliance": 1,
+    "grounded_calibrated_vs_overconfident": 1,
+    "format_correct_vs_extra_content": 1,
+    "helpful_safe_vs_over_refusal": 1,
+    "correct_concise_vs_fluent_unsupported": 1,
+    "complete_specific_vs_generic_filler": 1,
+    "safe_alternative_vs_moralizing_refusal": 1
+  },
+  "estimated_cost_usd": 0.0024,
+  "failures": []
+}
