@@ -22,6 +22,12 @@ AUTO_CRITERIA_TEMPLATES = {
     "safety": "criteria_safety_vi",
 }
 
+AUTO_CRITERIA_V6_TEMPLATES = {
+    "fact_check": "criteria_fact_check_v6_vi",
+    "instruction": "criteria_instruction_strict_v6_vi",
+    "safety": "criteria_safety_v6_vi",
+}
+
 
 def template_path(template_name: str) -> Path:
     name = template_name[:-3] if template_name.endswith(".md") else template_name
@@ -38,11 +44,18 @@ def load_prompt_template(template_name: str) -> str:
 def choose_template(pair: dict[str, Any], template_name: str) -> str:
     if template_name in {"auto_criteria_by_domain", "criteria_auto"}:
         return AUTO_CRITERIA_TEMPLATES[pair["domain"]]
+    if template_name in {"auto_criteria_v6_by_domain", "criteria_v6_auto"}:
+        return AUTO_CRITERIA_V6_TEMPLATES[pair["domain"]]
     return template_name
 
 
 def render_criteria(domain: str) -> str:
     criteria = sorted(DOMAIN_CRITERIA[domain])
+    return "\n".join(f"- `{criterion}`: {CRITERION_DESCRIPTIONS[criterion]}" for criterion in criteria)
+
+
+def render_pair_criteria(pair: dict[str, Any]) -> str:
+    criteria = pair.get("criteria") or sorted(DOMAIN_CRITERIA[pair["domain"]])
     return "\n".join(f"- `{criterion}`: {CRITERION_DESCRIPTIONS[criterion]}" for criterion in criteria)
 
 
@@ -65,6 +78,7 @@ def render_prompt(pair: dict[str, Any], template_name: str, order: str = "AB") -
         "response_a": response_a,
         "response_b": response_b,
         "criteria_block": render_criteria(pair["domain"]),
+        "pair_criteria_block": render_pair_criteria(pair),
     }
     rendered = template
     for key, value in values.items():

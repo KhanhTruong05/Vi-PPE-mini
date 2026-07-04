@@ -2,6 +2,7 @@ from vi_ppe.bias_metrics import (
     conditional_accuracy,
     delta_length_distribution,
     style_bias_rate,
+    style_bias_coverage,
     summarize_bias,
     verbosity_bias_rate,
 )
@@ -35,6 +36,25 @@ def test_style_bias_rate_tracks_polished_choice():
         row(perturbation_type="plain_style_vs_polished_style", final_winner="A", style_a="plain"),
     ]
     assert style_bias_rate(rows) == 0.5
+    assert style_bias_coverage(rows) == 1.0
+
+
+def test_style_bias_rate_uses_tags_and_free_text_markers():
+    rows = [
+        row(
+            perturbation_type="plain_style_vs_polished_style",
+            final_winner="B",
+            style_b="Trang trọng, trau chuốt, lịch sự hơn",
+        ),
+        row(
+            perturbation_type="plain_style_vs_polished_style",
+            final_winner="A",
+            style_a_tag="plain",
+            style_a="plain",
+        ),
+    ]
+    assert style_bias_rate(rows) == 0.5
+    assert style_bias_coverage(rows) == 1.0
 
 
 def test_conditional_accuracy_excludes_tie_gold():
@@ -47,3 +67,4 @@ def test_bias_summary_contains_delta_distribution():
     summary = summarize_bias(rows, "r")
     assert summary["delta_length_distribution"] == {"chosen_longer": 1, "chosen_shorter": 1, "no_choice": 1}
     assert "verbosity_bias_rate" in summary
+    assert "style_bias_coverage" in summary

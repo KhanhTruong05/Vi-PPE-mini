@@ -1,0 +1,57 @@
+runs:
+  - run_id: qwen25_7b_baseline_test_llm_v6_a100_b16
+    model: qwen25_7b_a100_40gb_b16
+    dataset: data/processed/pairs_test_llm_v4.jsonl
+    template: baseline_generic_v6_vi
+    split: test
+    bias: false
+    purpose: main_core_v6
+
+  - run_id: qwen25_7b_criteria_test_llm_v6_a100_b16
+    model: qwen25_7b_a100_40gb_b16
+    dataset: data/processed/pairs_test_llm_v4.jsonl
+    template: auto_criteria_v6_by_domain
+    split: test
+    bias: false
+    purpose: pair_criteria_and_instruction_strict_ablation
+
+  - run_id: qwen25_7b_bias_mitigated_llm_v6_a100_b16
+    model: qwen25_7b_a100_40gb_b16
+    dataset: data/processed/bias_subset_llm_v4.jsonl
+    template: criteria_bias_mitigated_v6_vi
+    split: bias
+    bias: true
+    purpose: main_bias_v6
+
+  - run_id: qwen25_7b_bias_instruction_strict_llm_v6_a100_b16
+    model: qwen25_7b_a100_40gb_b16
+    dataset: data/processed/bias_subset_llm_v4.jsonl
+    template: criteria_bias_instruction_strict_v6_vi
+    split: bias
+    bias: true
+    purpose: instruction_and_verbosity_bias_ablation
+
+optional_runs:
+  - run_id: llama31_8b_criteria_test_llm_v6_a100_b16
+    model: llama31_8b_instruct_a100_40gb_b16
+    dataset: data/processed/pairs_test_llm_v4.jsonl
+    template: auto_criteria_v6_by_domain
+    split: test
+    bias: false
+    purpose: non_qwen_core_ablation
+
+  - run_id: llama31_8b_bias_mitigated_llm_v6_a100_b16
+    model: llama31_8b_instruct_a100_40gb_b16
+    dataset: data/processed/bias_subset_llm_v4.jsonl
+    template: criteria_bias_mitigated_v6_vi
+    split: bias
+    bias: true
+    purpose: non_qwen_bias_ablation
+
+  - run_id: gemma3_4b_it_baseline_test_llm_v6_a100_b16
+    model: gemma3_4b_it_a100_40gb_b16
+    dataset: data/processed/pairs_test_llm_v4.jsonl
+    template: baseline_generic_v6_vi
+    split: test
+    bias: false
+    purpose: gemma_safe_baseline_ablation

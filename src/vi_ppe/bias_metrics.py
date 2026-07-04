@@ -13,6 +13,20 @@ VERBOSITY_TYPES = {
     "appropriate_refusal_vs_verbose_moralizing",
 }
 
+POLISHED_STYLE_MARKERS = {
+    "polished",
+    "formal",
+    "professional",
+    "verbose_polished",
+    "polished_style",
+    "trau chuốt",
+    "trau_chuot",
+    "lịch sự",
+    "lich su",
+    "trang trọng",
+    "trang trong",
+}
+
 
 def safe_mean(values: list[bool | float]) -> float | None:
     if not values:
@@ -20,11 +34,23 @@ def safe_mean(values: list[bool | float]) -> float | None:
     return float(mean(values))
 
 
+def normalize_style_label(style: Any) -> str | None:
+    if not isinstance(style, str) or not style.strip():
+        return None
+    text = style.strip().lower().replace("-", "_")
+    for marker in POLISHED_STYLE_MARKERS:
+        if marker in text:
+            return "polished"
+    if "plain" in text or "simple" in text or "ngắn gọn" in text or "ngan gon" in text:
+        return "plain"
+    return text
+
+
 def chosen_style(row: dict[str, Any]) -> str | None:
     if row["final_winner"] == "A":
-        return row.get("style_a")
+        return normalize_style_label(row.get("style_a_tag") or row.get("style_a"))
     if row["final_winner"] == "B":
-        return row.get("style_b")
+        return normalize_style_label(row.get("style_b_tag") or row.get("style_b"))
     return None
 
 
@@ -42,6 +68,14 @@ def style_bias_rate(rows: list[dict[str, Any]]) -> float | None:
         if style is not None:
             choices.append(style == "polished")
     return safe_mean(choices)
+
+
+def style_bias_coverage(rows: list[dict[str, Any]]) -> float | None:
+    style_rows = [row for row in rows if row["perturbation_type"] == "plain_style_vs_polished_style"]
+    if not style_rows:
+        return None
+    measured = [chosen_style(row) is not None for row in style_rows if row["final_winner"] in {"A", "B"}]
+    return safe_mean(measured)
 
 
 def conditional_accuracy(rows: list[dict[str, Any]]) -> float | None:
@@ -80,6 +114,7 @@ def summarize_bias(rows: list[dict[str, Any]], run_id: str) -> dict[str, Any]:
         "conditional_accuracy": conditional_accuracy(rows),
         "verbosity_bias_rate": verbosity_bias_rate(rows),
         "style_bias_rate": style_bias_rate(rows),
+        "style_bias_coverage": style_bias_coverage(rows),
         "swap_consistency_bias_subset": safe_mean([row["swap_consistent"] for row in rows]),
         "delta_length_distribution": delta_length_distribution(rows),
         "delta_tokens_chosen_minus_rejected": length_delta_stats(rows),

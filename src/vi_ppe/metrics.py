@@ -67,6 +67,8 @@ def aggregate_judgments(judgments: list[dict[str, Any]], pairs: list[dict[str, A
                 "length_b_tokens": pair["length_b_tokens"],
                 "style_a": pair.get("style_a"),
                 "style_b": pair.get("style_b"),
+                "style_a_tag": pair.get("style_a_tag") or pair.get("metadata", {}).get("style_a_tag"),
+                "style_b_tag": pair.get("style_b_tag") or pair.get("metadata", {}).get("style_b_tag"),
                 "prompt_template": ab["prompt_template"] if ab else None,
                 "judge_model": ab["judge_model"] if ab else None,
                 "has_ab": ab is not None,

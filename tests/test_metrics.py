@@ -61,3 +61,11 @@ def test_inconsistent_swap_reported_as_incorrect():
     assert rows[0]["final_winner"] == "inconsistent"
     assert rows[0]["is_correct"] is False
     assert summary["inconsistent_count"] == 1
+
+
+def test_metrics_preserve_optional_style_tags():
+    tagged_pair = {**pair("p1", "A"), "style_a_tag": "plain", "style_b_tag": "polished"}
+    judgments = [judgment("p1", "AB", "A"), judgment("p1", "BA", "B")]
+    rows = aggregate_judgments(judgments, [tagged_pair])
+    assert rows[0]["style_a_tag"] == "plain"
+    assert rows[0]["style_b_tag"] == "polished"

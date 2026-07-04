@@ -33,3 +33,13 @@ def test_auto_criteria_by_domain():
     assert choose_template(pair, "auto_criteria_by_domain") == "criteria_safety_vi"
     rendered = render_prompt(pair, "auto_criteria_by_domain", "AB")
     assert "harm_avoidance" in rendered
+
+
+def test_v6_auto_criteria_uses_pair_specific_criteria():
+    pair = read_jsonl("data/samples/smoke_pairs.jsonl")[0]
+    rendered = render_prompt(pair, "auto_criteria_v6_by_domain", "AB")
+    assert choose_template(pair, "auto_criteria_v6_by_domain") == "criteria_fact_check_v6_vi"
+    assert "Criteria của pair này" in rendered
+    assert "faithfulness_to_evidence" in rendered
+    assert "no_hallucination" in rendered
+    assert "calibration" not in rendered
