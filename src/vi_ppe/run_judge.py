@@ -13,7 +13,7 @@ from vi_ppe.io import read_jsonl, write_jsonl
 from vi_ppe.judge_backends.hf_local import HfLocalBackend
 from vi_ppe.judge_backends.mock import MockJudgeBackend
 from vi_ppe.parse_judgment import parse_judgment
-from vi_ppe.prompt_render import load_prompt_template, render_prompt
+from vi_ppe.prompt_render import choose_template, render_prompt
 
 
 def sha256_file(path: str | Path) -> str:
@@ -91,6 +91,7 @@ def run_judge(
                     "order": order,
                     "judgment_id": judgment_id,
                     "prompt": prompt,
+                    "actual_template": choose_template(pair, template_name),
                 }
             )
 
@@ -104,8 +105,9 @@ def run_judge(
             "order": job["order"],
             "judge_model": model_cfg["model_id"],
             "backend": model_cfg.get("backend", backend_name or "mock"),
-            "prompt_template": template_name,
-            "prompt_hash": sha256_text(load_prompt_template(template_name if template_name != "auto_criteria_by_domain" else "criteria_fact_check_vi")),
+            "prompt_template": job["actual_template"],
+            "prompt_template_requested": template_name,
+            "prompt_hash": sha256_text(job["prompt"]),
             "dataset_hash": dataset_hash,
             "config_hash": config_hash,
             "raw_output": raw_output,

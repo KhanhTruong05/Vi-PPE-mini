@@ -36,6 +36,7 @@ def test_aggregate_final_winner_rules():
     assert aggregate_final_winner("A", "A") == ("A", True)
     assert aggregate_final_winner("tie", "B") == ("B", False)
     assert aggregate_final_winner("A", "B") == ("inconsistent", False)
+    assert aggregate_final_winner("invalid", "invalid") == ("invalid", False)
 
 
 def test_metrics_exclude_gold_tie_from_accuracy():

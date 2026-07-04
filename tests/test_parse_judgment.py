@@ -16,3 +16,17 @@ def test_parse_judgment_normalizes_winner():
 def test_parse_judgment_fails_without_json():
     parsed = parse_judgment("winner is A")
     assert parsed["parse_status"] == "failed"
+
+
+def test_parse_judgment_recovers_winner_from_malformed_json():
+    parsed = parse_judgment('{"winner":"A","confidence":0.8,"reason":"bad "quote" here"}')
+    assert parsed["parse_status"] == "ok"
+    assert parsed["parse_recovered"] is True
+    assert parsed["winner"] == "A"
+    assert parsed["confidence"] == 0.8
+
+
+def test_parse_judgment_recovers_winner_from_truncated_fence():
+    parsed = parse_judgment('```json\n{"winner":"tie","confidence":1,"reason":"unfinished')
+    assert parsed["parse_status"] == "ok"
+    assert parsed["winner"] == "tie"

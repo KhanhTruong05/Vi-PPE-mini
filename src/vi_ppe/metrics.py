@@ -8,6 +8,25 @@ from typing import Any
 
 from vi_ppe.aggregate_swaps import aggregate_final_winner, map_to_original_space
 from vi_ppe.io import read_jsonl, write_jsonl
+from vi_ppe.parse_judgment import parse_judgment
+
+
+def normalize_judgment(judgment: dict[str, Any]) -> dict[str, Any]:
+    raw_output = judgment.get("raw_output")
+    if not isinstance(raw_output, str):
+        return judgment
+    reparsed = parse_judgment(raw_output)
+    if reparsed.get("parse_status") != "ok":
+        return judgment
+    current = judgment.get("parsed", {})
+    if current.get("parse_status") == "ok" and current.get("winner") == reparsed.get("winner"):
+        return judgment
+    return {
+        **judgment,
+        "parsed": reparsed,
+        "parse_status": reparsed["parse_status"],
+        "parse_recovered_at_metrics": True,
+    }
 
 
 def aggregate_judgments(judgments: list[dict[str, Any]], pairs: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -86,9 +105,19 @@ def summarize(pair_results: list[dict[str, Any]], judgments: list[dict[str, Any]
     }
 
 
-def compute_metrics(judgments_path: str | Path, dataset_path: str | Path, run_id: str, output_dir: str | Path = "results/metrics") -> dict[str, Any]:
-    judgments = read_jsonl(judgments_path)
+def compute_metrics(
+    judgments_path: str | Path,
+    dataset_path: str | Path,
+    run_id: str,
+    output_dir: str | Path = "results/metrics",
+    limit: int | None = None,
+) -> dict[str, Any]:
+    judgments = [normalize_judgment(row) for row in read_jsonl(judgments_path)]
     pairs = read_jsonl(dataset_path)
+    if limit is not None:
+        pairs = pairs[:limit]
+        allowed_pair_ids = {pair["pair_id"] for pair in pairs}
+        judgments = [row for row in judgments if row["pair_id"] in allowed_pair_ids]
     pair_results = aggregate_judgments(judgments, pairs)
     summary = summarize(pair_results, judgments)
     output = Path(output_dir)

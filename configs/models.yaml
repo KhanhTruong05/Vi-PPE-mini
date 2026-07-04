@@ -5,7 +5,7 @@ models:
     quantization: 4bit_nf4
     dtype: bf16
     batch_size: 1
-    max_new_tokens: 256
+    max_new_tokens: 768
     temperature: 0.0
     hardware_note: Colab A100 fallback / low VRAM GPU
   qwen25_3b_a100_40gb:
@@ -14,7 +14,7 @@ models:
     quantization: none
     dtype: bf16
     batch_size: 16
-    max_new_tokens: 256
+    max_new_tokens: 768
     temperature: 0.0
     hardware_note: Colab A100 40GB bf16, batch_size 16
   qwen25_3b_bf16_b8:
@@ -23,7 +23,7 @@ models:
     quantization: none
     dtype: bf16
     batch_size: 8
-    max_new_tokens: 256
+    max_new_tokens: 768
     temperature: 0.0
     hardware_note: Colab A100 40GB bf16 safe fallback, batch_size 8
   phogpt_4b:

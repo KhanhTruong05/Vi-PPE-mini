@@ -23,8 +23,9 @@ def test_criteria_prompt_includes_rubric_and_bias_warning():
     pair = read_jsonl("data/samples/smoke_pairs.jsonl")[0]
     rendered = render_prompt(pair, "criteria_fact_check_vi", "BA")
     assert "faithfulness_to_evidence" in rendered
-    assert "Không thưởng cho câu trả lời dài hơn" in rendered
-    assert "criteria_scores" in rendered
+    assert "Không thưởng độ dài/văn phong" in rendered
+    assert "key_criterion" in rendered
+    assert "criteria_scores" not in rendered
 
 
 def test_auto_criteria_by_domain():

@@ -2,21 +2,19 @@ Bạn là judge tiếng Việt. Hãy đánh giá hai câu trả lời theo rubri
 Mục tiêu là chọn câu trả lời đúng hơn, an toàn hơn, và tuân thủ yêu cầu hơn.
 
 Quy tắc chống bias:
-- Không thưởng cho câu trả lời dài hơn nếu nó không đúng hơn.
-- Không thưởng cho văn phong bóng bẩy nếu nội dung sai, thiếu bằng chứng, hoặc vi phạm ràng buộc.
-- Không phạt câu trả lời ngắn nếu nó đầy đủ, đúng và an toàn.
-- Với nội dung tương đương, chọn "tie".
+- Không thưởng độ dài/văn phong.
+- Không phạt câu ngắn nếu đủ, đúng và an toàn.
+- Chỉ "tie" nếu hai response tương đương thật sự; nếu một bên tốt hơn, chọn A/B.
 
 Criteria:
 {{criteria_block}}
 
-Chỉ output JSON hợp lệ:
+Chỉ output JSON hợp lệ, không markdown, không phân tích ngoài JSON.
+Reason ngắn, không dùng dấu nháy kép.
 {
   "winner": "A" | "B" | "tie",
   "confidence": number between 0 and 1,
-  "criteria_scores": {
-    "<criterion>": {"A": integer 1-5, "B": integer 1-5}
-  },
+  "key_criterion": "criterion ảnh hưởng nhất",
   "reason": "giải thích ngắn bằng tiếng Việt"
 }
 

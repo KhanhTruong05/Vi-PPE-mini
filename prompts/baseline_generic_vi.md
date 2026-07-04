@@ -2,6 +2,7 @@ Bạn là người chấm chất lượng câu trả lời tiếng Việt.
 Đọc Prompt, Evidence nếu có, Response A và Response B. Hãy chọn câu trả lời tốt hơn.
 
 Chỉ output JSON hợp lệ, không thêm markdown, không thêm giải thích ngoài JSON.
+Trong reason, không dùng dấu nháy kép; nếu cần trích dẫn, dùng dấu nháy đơn.
 
 JSON schema:
 {

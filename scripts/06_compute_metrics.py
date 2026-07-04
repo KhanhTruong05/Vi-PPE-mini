@@ -20,10 +20,11 @@ def main() -> int:
     parser.add_argument("--judgments", required=True)
     parser.add_argument("--dataset", required=True)
     parser.add_argument("--run-id", required=True)
+    parser.add_argument("--limit", type=int, default=None, help="Limit dataset pairs before aggregation, matching inference smoke runs.")
     parser.add_argument("--bias", action="store_true", help="Compute bias diagnostics and write bias summary/figures.")
     args = parser.parse_args()
     metrics_dir = ROOT / "results" / "metrics"
-    summary = compute_metrics(ROOT / args.judgments, ROOT / args.dataset, args.run_id, metrics_dir)
+    summary = compute_metrics(ROOT / args.judgments, ROOT / args.dataset, args.run_id, metrics_dir, limit=args.limit)
     if args.bias:
         pair_results = read_jsonl(metrics_dir / f"{args.run_id}_pair_results.jsonl")
         summary["bias_summary"] = write_bias_summary(pair_results, args.run_id, metrics_dir, ROOT / "results" / "figures")
