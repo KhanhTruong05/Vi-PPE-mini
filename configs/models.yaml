@@ -17,6 +17,15 @@ models:
     max_new_tokens: 768
     temperature: 0.0
     hardware_note: Colab A100 40GB bf16, batch_size 16
+  qwen25_3b_a100_40gb_b64:
+    model_id: Qwen/Qwen2.5-3B-Instruct
+    backend: hf_local
+    quantization: none
+    dtype: bf16
+    batch_size: 64
+    max_new_tokens: 768
+    temperature: 0.0
+    hardware_note: Colab A100 40GB bf16 throughput test, batch_size 64
   qwen25_3b_bf16_b8:
     model_id: Qwen/Qwen2.5-3B-Instruct
     backend: hf_local
@@ -26,13 +35,49 @@ models:
     max_new_tokens: 768
     temperature: 0.0
     hardware_note: Colab A100 40GB bf16 safe fallback, batch_size 8
-  phogpt_4b:
-    model_id: vinai/PhoGPT-4B-Chat
+  qwen25_7b_a100_40gb_b8:
+    model_id: Qwen/Qwen2.5-7B-Instruct
     backend: hf_local
-    trust_remote_code: true
+    quantization: none
+    dtype: bf16
+    batch_size: 8
+    max_new_tokens: 768
+    temperature: 0.0
+    hardware_note: Colab A100 40GB bf16 safe 7B test, batch_size 8
+  qwen25_7b_a100_40gb_b16:
+    model_id: Qwen/Qwen2.5-7B-Instruct
+    backend: hf_local
+    quantization: none
+    dtype: bf16
+    batch_size: 16
+    max_new_tokens: 768
+    temperature: 0.0
+    hardware_note: Colab A100 40GB bf16 7B throughput test, batch_size 16
+  qwen25_7b_4bit_b8:
+    model_id: Qwen/Qwen2.5-7B-Instruct
+    backend: hf_local
     quantization: 4bit_nf4
     dtype: bf16
-    batch_size: 1
-    max_new_tokens: 256
+    batch_size: 8
+    max_new_tokens: 768
     temperature: 0.0
-    hardware_note: Colab A100 or equivalent, 4-bit fallback
+    hardware_note: 7B 4-bit fallback for lower VRAM GPUs, batch_size 8
+  gemma3_4b_it_a100_40gb_b16:
+    model_id: google/gemma-3-4b-it
+    backend: hf_local
+    loader: gemma3_conditional_generation
+    quantization: none
+    dtype: bf16
+    batch_size: 16
+    max_new_tokens: 768
+    temperature: 0.0
+    hardware_note: Colab A100 40GB bf16 Gemma 3 4B IT, batch_size 16
+  llama31_8b_instruct_a100_40gb_b16:
+    model_id: meta-llama/Llama-3.1-8B-Instruct
+    backend: hf_local
+    quantization: none
+    dtype: bf16
+    batch_size: 16
+    max_new_tokens: 768
+    temperature: 0.0
+    hardware_note: Colab A100 40GB bf16 Llama 3.1 8B Instruct, batch_size 16; requires HF_TOKEN and accepted Meta license

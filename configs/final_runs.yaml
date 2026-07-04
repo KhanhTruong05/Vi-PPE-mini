@@ -48,8 +48,17 @@ runs:
     required_for_phase_11: true
 
 optional_runs:
-  - run_id: phogpt_baseline_test_subset
-    model: phogpt_4b
+  - run_id: gemma3_4b_it_baseline_test_subset
+    model: gemma3_4b_it_a100_40gb_b16
+    dataset: data/processed/pairs_test.jsonl
+    template: baseline_generic_vi
+    split: test
+    bias: false
+    limit: 20
+    required_for_phase_11: false
+
+  - run_id: llama31_8b_instruct_baseline_test_subset
+    model: llama31_8b_instruct_a100_40gb_b16
     dataset: data/processed/pairs_test.jsonl
     template: baseline_generic_vi
     split: test
