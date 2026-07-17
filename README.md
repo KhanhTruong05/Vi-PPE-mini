@@ -149,13 +149,13 @@ Full V5 core matrix:
 
 | Model | Prompt | Accuracy | Macro | Swap | Parse |
 |---|---|---:|---:|---:|---:|
-| Qwen2.5-3B | Baseline | 83.70% | 83.63% | 84.89% | 100.00% |
+| Qwen2.5-3B | generic | 83.70% | 83.63% | 84.89% | 100.00% |
 | Qwen2.5-3B | Criteria | 75.15% | 75.11% | 73.56% | 100.00% |
-| **Qwen2.5-7B** | **Baseline** | **94.04%** | **94.00%** | **94.43%** | **100.00%** |
+| **Qwen2.5-7B** | **generic** | **94.04%** | **94.00%** | **94.43%** | **100.00%** |
 | Qwen2.5-7B | Criteria | 90.06% | 90.00% | 91.45% | 99.90% |
-| Gemma-3-4B | Baseline | 86.48% | 86.42% | 87.67% | 99.11% |
+| Gemma-3-4B | generic | 86.48% | 86.42% | 87.67% | 99.11% |
 | Gemma-3-4B | Criteria | 76.34% | 76.32% | 77.14% | 100.00% |
-| Llama-3.1-8B | Baseline | 86.88% | 86.79% | 88.27% | 100.00% |
+| Llama-3.1-8B | generic | 86.88% | 86.79% | 88.27% | 100.00% |
 | Llama-3.1-8B | Criteria | 89.86% | 89.80% | 91.45% | 100.00% |
 
 ### Controlled Bias Subset
@@ -168,13 +168,13 @@ Full V5 controlled-bias matrix:
 
 | Model | Prompt | Conditional accuracy | Macro | Swap | Verbosity |
 |---|---|---:|---:|---:|---:|
-| Qwen2.5-3B | Baseline | 62.88% | 62.79% | 66.67% | 65.00% |
+| Qwen2.5-3B | generic | 62.88% | 62.79% | 66.67% | 65.00% |
 | Qwen2.5-3B | Bias-mitigated | 62.88% | 62.81% | 62.00% | 53.27% |
-| Qwen2.5-7B | Baseline | 76.59% | 76.49% | 79.33% | 55.20% |
+| Qwen2.5-7B | generice | 76.59% | 76.49% | 79.33% | 55.20% |
 | **Qwen2.5-7B** | **Bias-mitigated** | **79.26%** | **79.20%** | **83.00%** | **47.83%** |
-| Gemma-3-4B | Baseline | 73.91% | 73.87% | 77.33% | 55.91% |
+| Gemma-3-4B | generic | 73.91% | 73.87% | 77.33% | 55.91% |
 | Gemma-3-4B | Bias-mitigated | 67.89% | 67.82% | 69.33% | 56.07% |
-| Llama-3.1-8B | Baseline | 77.26% | 77.19% | 86.67% | 70.34% |
+| Llama-3.1-8B | generic | 77.26% | 77.19% | 86.67% | 70.34% |
 | Llama-3.1-8B | Bias-mitigated | 76.25% | 76.19% | 79.67% | 64.29% |
 
 The official reported experiment version is **V5**. Its main finding is that prompt complexity is model- and domain-dependent: a concise generic prompt produced the strongest overall core result, while explicit anti-bias instructions helped Qwen2.5-7B on the controlled bias subset. Later stricter-prompt runs are treated only as ablations and do not replace the V5 results.
@@ -280,7 +280,7 @@ Faculty of Information Science and Engineering, University of Information Techno
 ```bibtex
 @misc{truong2026vippe,
   title  = {Vi-PPE-mini: A Vietnamese Pairwise Preference Benchmark for Reliable LLM-as-a-Judge Evaluation},
-  author = {Truong, Khanh T. M. and Bui, Lam T. and Luu, Son T.},
+  author = {Truong, Khanh T. M. and Bui, Lam T.},
   year   = {2026}
 }
 ```
