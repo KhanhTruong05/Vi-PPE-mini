@@ -15,7 +15,7 @@
 | 10 | Bias Metrics | Hoàn thành | `reports/phase_10_report.md` |
 | 11 | Official V5 Experiment Matrix | Hoàn thành | `reports/phase_11_report.md` |
 | 12 | V5 Error Analysis và Charts | Hoàn thành | `reports/phase_12_report.md` |
-| 13 | Report, Reproducibility và Packaging | Hoàn thành | `reports/Vi-PPE-mini-paper.pdf` |
+| 13 | Report, Reproducibility và Packaging | Hoàn thành | `README.md`, `reports/experiment_results.md` |
 | 14 | Optional LoRA/QLoRA | Chưa thực hiện | Không thuộc kết quả báo cáo chính |
 
 ## Phiên bản chính thức

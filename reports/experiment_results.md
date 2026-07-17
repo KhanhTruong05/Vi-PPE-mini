@@ -1,6 +1,6 @@
 # Vi-PPE-mini Experiment Results
 
-This summary mirrors the official **V5** results reported in `Vi-PPE-mini-paper.pdf`. The experiments use the frozen 503-pair held-out test set and the separate 300-pair controlled bias subset. Every pair is judged in AB and BA order.
+This summary mirrors the official **V5** project results. The experiments use the frozen 503-pair held-out test set and the separate 300-pair controlled bias subset. Every pair is judged in AB and BA order.
 
 ## Main Held-Out Test
 

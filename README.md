@@ -2,7 +2,7 @@
 
 **A Vietnamese pairwise preference benchmark for reliable LLM-as-a-judge evaluation.**
 
-[Paper](reports/Vi-PPE-mini-paper.pdf) | [Dataset card](reports/dataset_card_llm_v4_frozen.md) | [Main results](reports/experiment_results.md) | [Annotation guideline](reports/annotation_guideline.md)
+[Dataset card](reports/dataset_card_llm_v4_frozen.md) | [Main results](reports/experiment_results.md) | [Annotation guideline](reports/annotation_guideline.md) | [Phase status](reports/phase_status.md)
 
 Vi-PPE-mini evaluates whether an LLM judge can select the better Vietnamese response while remaining robust to answer order, verbosity, style, and prompt wording. It covers three domains: fact checking, instruction following, and safety.
 
@@ -179,7 +179,7 @@ Full V5 controlled-bias matrix:
 
 The official reported experiment version is **V5**. Its main finding is that prompt complexity is model- and domain-dependent: a concise generic prompt produced the strongest overall core result, while explicit anti-bias instructions helped Qwen2.5-7B on the controlled bias subset. Later stricter-prompt runs are treated only as ablations and do not replace the V5 results.
 
-Full tables and error analysis are available in [experiment_results.md](reports/experiment_results.md) and the [paper](reports/Vi-PPE-mini-paper.pdf).
+Full tables and error analysis are available in [experiment_results.md](reports/experiment_results.md) and [phase_12_report.md](reports/phase_12_report.md).
 
 ## Key Findings
 

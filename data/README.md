@@ -34,4 +34,4 @@ See `reports/dataset_card_llm_v4_frozen.md`, `reports/annotation_guideline.md`, 
 
 ## Agreement Audit
 
-The `processed/iaa/` sheets support an optional two-annotator agreement audit. This follow-up workflow does not alter the frozen benchmark or the paper's reported results unless a new dataset version is explicitly released.
+The local `processed/iaa/` sheets support an optional two-annotator agreement audit. These working sheets are not tracked in the public repository and do not alter the frozen benchmark or the reported results unless a new dataset version is explicitly released.

@@ -16,6 +16,16 @@ checkpoints_*/
 results/checkpoints/
 results/cache/
 
+# Private/local research artifacts
+data/raw/Vifactcheck_Dataset/
+data/processed/*annotation_sheet*.csv
+data/processed/*draft*.jsonl
+data/processed/*reviewed*.jsonl
+data/processed/iaa/
+results/judgments/
+reports/Vi-PPE-mini-paper.pdf
+reports/vi_ppe_mini_springer_report.tex
+
 # Keep smoke outputs ignored; curated final metrics/figures can be committed.
 results/judgments/smoke_mock*.jsonl
 results/metrics/smoke_mock*_summary.json

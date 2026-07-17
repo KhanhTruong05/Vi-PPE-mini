@@ -4,8 +4,6 @@ This directory contains the final public-facing documentation for Vi-PPE-mini.
 
 | File | Purpose |
 |---|---|
-| `Vi-PPE-mini-paper.pdf` | Final Springer-style project paper |
-| `vi_ppe_mini_springer_report.tex` | LaTeX source of the paper |
 | `experiment_results.md` | Compact tables and findings reported in the paper |
 | `v5_experiment_report.md` | Detailed official V5 experiment log |
 | `dataset_card_llm_v4_frozen.md` | Frozen 900-pair benchmark card |
@@ -23,3 +21,5 @@ Implementation history is retained in `phase_00_report.md` through
 `phase_11_report.md`; Phase 12 contains the corresponding V5 error analysis.
 
 `iaa_annotation_protocol.md` describes an optional follow-up agreement audit. Its results are not part of the paper's reported benchmark results.
+
+The final PDF and LaTeX source are intentionally kept local because they contain author contact information.

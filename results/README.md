@@ -11,7 +11,9 @@ The V6 artifacts under `metrics/`, `figures/`, and `error_cases/` are stricter p
 For the authoritative result tables, see:
 
 - `reports/experiment_results.md`
-- `reports/Vi-PPE-mini-paper.pdf`
+- `README.md`
+- `reports/phase_11_report.md`
+- `reports/phase_12_report.md`
 
 ## Layout
 

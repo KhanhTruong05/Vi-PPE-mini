@@ -1465,8 +1465,8 @@ Status: done
 Deliverables:
 
 - `README.md`.
-- `reports/Vi-PPE-mini-paper.pdf`.
-- `reports/vi_ppe_mini_springer_report.tex`.
+- `README.md` và `reports/experiment_results.md`.
+- Bản PDF/LaTeX cuối được giữ local, không track trên Git vì có thông tin liên hệ tác giả.
 - `reports/experiment_results.md`.
 - Frozen dataset card và QA reports.
 
