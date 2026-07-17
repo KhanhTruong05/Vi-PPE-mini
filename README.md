@@ -272,7 +272,6 @@ Detailed progress is available in [phase_status.md](reports/phase_status.md) and
 
 - Khanh T. M. Truong
 - Lam T. Bui
-- Son T. Luu
 
 Faculty of Information Science and Engineering, University of Information Technology, Vietnam National University Ho Chi Minh City.
 
