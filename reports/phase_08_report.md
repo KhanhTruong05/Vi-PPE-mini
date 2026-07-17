@@ -68,3 +68,13 @@ python scripts/05_run_judge.py --dataset data/processed/pairs_dev.jsonl --model 
 ## Kết luận
 
 Phase 8 đủ điều kiện chuyển sang Phase 9.
+
+## Cập nhật inference engine dùng trong V5
+
+- HF backend hỗ trợ batched inference, padding và decode riêng từng prompt.
+- Runner giữ AB/BA, JSONL append và `--resume` để tiếp tục sau khi Colab mất kết nối.
+- V5 chạy BF16, không quantize, deterministic decoding trên Colab A100.
+- Các model: Qwen2.5-3B, Qwen2.5-7B, Gemma-3-4B-IT và Llama-3.1-8B-Instruct.
+- Mỗi core run có `503 x 2 = 1006` judgments; mỗi bias run có `300 x 2 = 600` judgments.
+
+Không có real-model inference nào được chạy trong Codex/local CPU.

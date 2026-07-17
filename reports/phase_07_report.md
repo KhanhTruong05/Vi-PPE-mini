@@ -55,3 +55,13 @@ Renderer hỗ trợ `auto_criteria_by_domain` để map domain sang template cri
 ## Kết luận
 
 Phase 7 đủ điều kiện chuyển sang Phase 8.
+
+## Cập nhật prompt freeze cho V5
+
+V5 sử dụng các prompt tiếng Việt ngắn, output JSON thuần và quy tắc `tie` chặt hơn:
+
+- `baseline_generic_vi`: generic baseline cho core test.
+- `auto_criteria_by_domain`: chọn criteria prompt theo fact-check, instruction hoặc safety.
+- `criteria_bias_mitigated_vi`: cảnh báo không thưởng response chỉ vì dài hoặc polished hơn.
+
+Kết quả V5 xác nhận baseline ngắn là cấu hình core tốt nhất; criteria prompt không được xem là mặc định tốt hơn cho mọi domain.

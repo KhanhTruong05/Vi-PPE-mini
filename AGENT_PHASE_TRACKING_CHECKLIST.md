@@ -1402,3 +1402,72 @@ Trước khi code, hãy đọc lại IMPLEMENTATION_PLAN_Vi-PPE-mini.md và AGEN
 
 Sau khi tôi đồng ý hoặc nếu không có câu hỏi bắt buộc, hãy implement end-to-end và cập nhật checklist.
 ```
+
+---
+
+## 8. Cập Nhật Trạng Thái Cuối - Official V5
+
+Phần này thay thế các trạng thái tạm thời trước khi có full dataset và real Colab inference.
+
+### Dataset chính thức
+
+- Dataset version: `llm_v4`.
+- Dev: `97` pairs.
+- Main test: `503` pairs.
+- Controlled bias: `300` pairs.
+- Tổng: `900` pairs, cân bằng `300` pairs cho mỗi domain.
+- Manifest: `data/processed/dataset_manifest_llm_v4.json`.
+
+### Phase 11 - Experiment Matrix V5
+
+Status: done
+
+Environment:
+
+- Google Colab A100 40GB.
+- BF16 deterministic inference.
+- Bốn model: Qwen2.5-3B, Qwen2.5-7B, Gemma-3-4B và Llama-3.1-8B.
+- Mỗi core pair chạy AB/BA; mỗi bias pair chạy AB/BA.
+
+Acceptance Criteria Result:
+
+- [x] Main test chạy sau dataset/prompt freeze.
+- [x] Đủ core baseline và criteria runs cho bốn model.
+- [x] Đủ bias baseline và mitigated runs cho bốn model.
+- [x] Báo cáo parse success, accuracy, macro accuracy và swap consistency.
+- [x] Không chạy real model inference trên local CPU.
+
+Official V5 results:
+
+- Core tốt nhất: Qwen2.5-7B baseline, accuracy `94.04%`, macro `94.00%`, swap `94.43%`.
+- Bias tốt nhất: Qwen2.5-7B mitigated, conditional accuracy `79.26%`, macro `79.20%`, swap `83.00%`.
+
+Report: `reports/phase_11_report.md`.
+
+### Phase 12 - Error Analysis và Charts
+
+Status: done
+
+Acceptance Criteria Result:
+
+- [x] Phân tích criteria-induced instruction degradation.
+- [x] Phân tích AB/BA swap inconsistency.
+- [x] Phân tích verbosity và normalized style bias.
+- [x] Có error cases truy ngược về pair ID và judgment.
+- [x] Tách semantic judging error khỏi schema parse error.
+
+Report: `reports/phase_12_report.md`.
+
+### Phase 13 - Report, Reproducibility và Packaging
+
+Status: done
+
+Deliverables:
+
+- `README.md`.
+- `reports/Vi-PPE-mini-paper.pdf`.
+- `reports/vi_ppe_mini_springer_report.tex`.
+- `reports/experiment_results.md`.
+- Frozen dataset card và QA reports.
+
+Official experiment version: **V5**. V6 chỉ được xem là prompt-hardening ablation và không thay thế V5.

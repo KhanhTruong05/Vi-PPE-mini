@@ -58,3 +58,16 @@ Note: these are local mock diagnostics only. The mock backend follows gold label
 ## Next Step
 
 - Phase 11 - Experiment Matrix. Real model inference still needs Colab A100 or an equivalent GPU.
+
+## Cập nhật kết quả bias V5
+
+Bias metrics đã được tính trên 8 run của 4 model. Cấu hình tổng thể tốt nhất là
+Qwen2.5-7B + bias-mitigated prompt:
+
+- Conditional accuracy: `79.26%`.
+- Macro accuracy: `79.20%`.
+- Swap consistency: `83.00%`.
+- Verbosity bias rate: `47.83%`.
+- Normalized style-selection rate: `48.81%`.
+
+Bias mitigation có hiệu quả rõ nhất với Qwen2.5-7B; hiệu quả không transfer ổn định sang Gemma và Llama. Đây là official V5 bias result.

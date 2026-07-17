@@ -55,3 +55,16 @@ Metric outputs hiện dùng `smoke_mock` để validate local. Khi có real mode
 ## Kết luận
 
 Phase 9 đủ điều kiện chuyển sang Phase 10.
+
+## Cập nhật kết quả core V5
+
+Core metrics đã được áp dụng trên 8 run chính của 4 model x 2 prompt families.
+Cấu hình tốt nhất là Qwen2.5-7B + generic baseline:
+
+- Pairwise accuracy: `94.04%`.
+- Macro accuracy: `94.00%`.
+- Swap consistency: `94.43%`.
+- Parse success: `100.00%`.
+- Domain accuracy: fact-check `93.37%`, instruction `89.22%`, safety `99.41%`.
+
+Kết quả này là official V5 core result dùng trong báo cáo.

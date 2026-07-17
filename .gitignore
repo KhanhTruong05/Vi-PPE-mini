@@ -4,6 +4,19 @@
 __pycache__/
 *.py[cod]
 .pytest_cache/
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+
+# Local secrets and runtime artifacts
+.env.local
+*.log
+checkpoints/
+checkpoints_*/
+results/checkpoints/
+results/cache/
+
+# Keep smoke outputs ignored; curated final metrics/figures can be committed.
 results/judgments/smoke_mock*.jsonl
 results/metrics/smoke_mock*_summary.json
 results/metrics/smoke_mock*_pair_results.jsonl

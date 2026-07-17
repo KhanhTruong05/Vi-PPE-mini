@@ -72,3 +72,13 @@ Final target requires 150-200 manually reviewed high-control bias pairs. Current
 ## Kết luận
 
 Phase 5 tooling is complete and sufficient to proceed to Phase 6 local split/freeze. Before final experiments, increase and manually review the bias subset.
+
+## Cập nhật cuối cho benchmark V5
+
+- Quy mô cuối đã tăng lên `600` core pairs và `300` bias pairs.
+- Hai project reviewer đã kiểm tra prompt, evidence, response A/B, gold winner và gold reason theo rubric từng domain.
+- Toàn bộ `900/900` pairs được đánh dấu reviewed; `needs_fix = 0` sau vòng rà soát cuối.
+- Đây là two-reviewer project review, chưa phải blind independent annotation và chưa báo cáo Cohen's kappa trong kết quả V5.
+- Các file annotation/frozen cuối dùng hậu tố `llm_v4`; tên V5 là phiên bản thí nghiệm, không phải một split dữ liệu mới.
+
+Acceptance Criteria cuối: đạt, đủ điều kiện freeze benchmark chính thức.

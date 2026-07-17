@@ -59,3 +59,24 @@ Không có blocker cho pipeline local. Dataset hiện vẫn là frozen sample nh
 ## Kết luận
 
 Phase 6 đủ điều kiện chuyển sang Phase 7.
+
+## Cập nhật freeze cuối dùng cho V5
+
+| Split | Fact-check | Instruction | Safety | Tổng |
+|---|---:|---:|---:|---:|
+| Dev | 34 | 33 | 30 | 97 |
+| Test | 166 | 167 | 170 | 503 |
+| Bias | 100 | 100 | 100 | 300 |
+| **Tổng** | **300** | **300** | **300** | **900** |
+
+Frozen artifacts chính:
+
+- `data/processed/pairs_dev_llm_v4.jsonl`
+- `data/processed/pairs_test_llm_v4.jsonl`
+- `data/processed/bias_subset_llm_v4.jsonl`
+- `data/processed/dataset_manifest_llm_v4.json`
+- `reports/dataset_card_llm_v4_frozen.md`
+- `reports/dataset_qa_report_llm_v4_frozen.md`
+- `reports/bias_dataset_qa_report_llm_v4_frozen.md`
+
+Đây là dataset chính thức được dùng trong Experiment V5.
