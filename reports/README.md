@@ -23,3 +23,5 @@ Implementation history is retained in `phase_00_report.md` through
 `iaa_annotation_protocol.md` describes an optional follow-up agreement audit. Its results are not part of the paper's reported benchmark results.
 
 The final PDF and LaTeX source are intentionally kept local because they contain author contact information.
+
+Internal implementation plans, data-insertion notes, and the agent tracking checklist are also kept local rather than published in the portfolio repository.

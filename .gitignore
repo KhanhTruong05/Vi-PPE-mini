@@ -25,6 +25,9 @@ data/processed/iaa/
 results/judgments/
 reports/Vi-PPE-mini-paper.pdf
 reports/vi_ppe_mini_springer_report.tex
+AGENT_PHASE_TRACKING_CHECKLIST.md
+DATA_INSERT_PLAN.md
+IMPLEMENTATION_PLAN_Vi-PPE-mini.md
 
 # Keep smoke outputs ignored; curated final metrics/figures can be committed.
 results/judgments/smoke_mock*.jsonl
